@@ -1,0 +1,244 @@
+import java.util.*;
+import java.io.*;
+
+public class uas{
+  public static Vector<Vector> brg = new Vector<Vector>();
+  public static Vector<Vector> cs = new Vector<Vector>();
+  public static Vector<Vector> dp = new Vector<Vector>();
+  
+  public static Vector<Object> addb(String nb,int hj,int hb)
+	{
+    Vector <Object> barang = new Vector<Object>();
+    barang.addElement(nb);
+    barang.addElement(String.valueOf(hj));
+    barang.addElement(String.valueOf(hb));
+    return barang;
+	}
+	
+	public static Vector<Object> cetak(String nb,int h,int j,int ht){
+    Vector <Object> struk = new Vector<Object>();
+    struk.addElement(nb);
+    struk.addElement(h);
+    struk.addElement(j);
+    struk.addElement(ht);
+    return struk;
+	}
+	
+	/**public static Vector<Object> datapen(String nb,int h,int j,int ht){
+    Vector <Object> datap = new Vector<Object>();
+    datap.addElement(nb);
+    datap.addElement(h);
+    datap.addElement(j);
+    datap.addElement(ht);
+    return datap;
+	}*/
+	
+	
+  public static void main(String[]args) throws IOException
+	{
+	BufferedReader ii = new BufferedReader(new InputStreamReader(System.in));
+	Scanner i = new Scanner(System.in);
+	Vector<Vector> v = new Vector<Vector>();
+	brg.addElement(addb("Chiki",2000,1000));
+	brg.addElement(addb("Taro",1500,700));
+	brg.addElement(addb("Chitato",4000,2000));
+	int jum = brg.size();
+	int jml = 0;
+	int exit = 0;
+	int untung = 0 ;
+	Date date = new Date();
+	
+	while(exit == 0)
+		{
+		System.out.println("1. Beli Barang");
+		System.out.println("2. Tambah Barang");
+		System.out.println("3. Hapus Barang");
+		System.out.println("4. Cek Data Barang");
+		System.out.println("5. Pendapatan");
+		System.out.println("6. Edit Data Barang");
+		System.out.println("7. Keluar");
+		System.out.println("8. cari data");
+		System.out.print("Masukkan pilihan (1-8) : ");
+		int pil = i.nextInt();
+		switch (pil)
+			{
+			case 1:
+				Vector<String> struk = new Vector<String>();
+				int lagi = 1;
+				//int s = 0;
+				int t = 0;
+				System.out.println("-------------------------");
+				System.out.println("      DATA BARANG");
+				System.out.println("-------------------------");
+				System.out.println();
+				for (int a = 0 ; a < jum ; a++)
+					{
+					System.out.print(a+1 +"  ");
+					System.out.print(brg.elementAt(a).elementAt(0) +" @Rp " +brg.elementAt(a).elementAt(1));
+					System.out.println();
+					}
+				System.out.println("-----------------------------------");
+				while(lagi == 1)
+					{
+					System.out.print("Masukkan no barang yang akan dibeli : ");
+					int beli = i.nextInt()-1;
+					System.out.print("Jumlah : ");
+					int jumb = i.nextInt();
+					
+					int ht = jumb*Integer.valueOf((String) brg.elementAt(beli).elementAt(1));
+					
+					//struk.addElement((String) brg.elementAt(beli).elementAt(0),(String) brg.elementAt(beli).elementAt(1),ht);
+					cs.addElement(cetak((String)brg.elementAt(beli).elementAt(0),Integer.valueOf((String)brg.elementAt(beli).elementAt(1)),jumb,ht));
+					
+					
+					System.out.println(cs.size());
+					System.out.println(brg.elementAt(beli).elementAt(0) +" " +jumb +" buah : " +ht);
+					t += ht;
+					untung += jumb*(Integer.valueOf((String) brg.elementAt(beli).elementAt(1))-Integer.valueOf((String) brg.elementAt(beli).elementAt(2)));
+					
+					int lg = 0;
+					while (lg==0)
+						{
+						System.out.print("(1=ya 0=tidak)Ingin beli lagi ?");
+						lagi = i.nextInt();
+						if((lagi == 0) || (lagi==1))
+							{
+							lg = 1;
+							}
+						else
+							{
+							System.out.print("Angka yang anda masukkan salah");
+							lg=0;
+							}
+						}
+					int b = 0;
+					/**while( b < cs.size())
+						{
+						for (int a = 0 ; a<cs.elementAt(b).size() ; a++)
+							{
+							System.out.print(cs.elementAt(b).elementAt(a));
+							}
+						System.out.println();
+						b++;
+						}*/
+					while( b < cs.size())
+						{
+						System.out.print(cs.elementAt(b).elementAt(0) +" (" +cs.elementAt(b).elementAt(2) +") " +" = " +cs.elementAt(b).elementAt(3));
+						System.out.println();
+						b++;
+						}
+					//s++;
+					}
+				System.out.println("Total : " +t);
+				System.out.println(date);
+				break;
+			case 2:
+				System.out.print("Masukkan Jumlah Tambah Barang : ");
+				jml = i.nextInt();
+				jum += jml;
+				for (int a = 0 ; a < jml ; a++)
+					{
+					System.out.print("Masukkan Nama Barang : ");
+					String nb = i.next();
+					System.out.print("Masukkan Harga Jual :");
+					int hj = i.nextInt();
+					System.out.print("Masukkan Harga Beli :");
+					int hb = i.nextInt();
+				
+					brg.addElement(addb(nb,hj,hb));
+					System.out.println(brg.size());
+					}
+				break;
+			case 3:
+				lagi = 1;
+				while (lagi == 1)
+					{
+					System.out.print("Masukkan no barang yang akan dihapus : ");
+					int hapus = i.nextInt()-1;
+					jum -= 1;
+					brg.removeElementAt(hapus);
+					int lg = 0;
+					while (lg==0)
+						{
+						System.out.print("(1=ya 0=tidak)Ingin menghapus lagi ? ");
+						lagi = i.nextInt();
+						if((lagi == 0) || (lagi==1))
+							{
+							lg = 1;
+							}
+						else
+							{
+							System.out.print("Angka yang anda masukkan salah");
+							lg=0;
+							}
+						}
+					}
+				break;
+			case 4:
+				System.out.println("-------------------------");
+				System.out.println("      DATA BARANG");
+				System.out.println("-------------------------");
+				/**System.out.print("No ");
+				System.out.print("Nama Barang ");
+				System.out.print("Harga Jual ");
+				System.out.println("Harga Beli");
+				*/
+				for (int a = 0 ; a < jum ; a++)
+					{
+					System.out.print(a+1 +"  ");
+					//for (int b = 0 ; b < brg.elementAt(a).size() ; b++)
+						//{
+						
+					System.out.print(brg.elementAt(a).elementAt(0) +" hj : " +brg.elementAt(a).elementAt(1) +" hb : " +brg.elementAt(a).elementAt(2));
+					System.out.print("  ");
+						
+						//}
+					System.out.println();
+					}
+				System.out.println();
+				System.out.println("hj = Harga Jual");
+				System.out.println("hb = Harga Beli");
+				System.out.println();
+				System.out.print("Tekan enter untuk kembali");
+				ii.readLine();
+				break;
+			case 5:
+				System.out.println("Laba bersih : Rp " +untung);
+				break;
+			case 6:
+				System.out.print("Masukkan no barang yang akan diedit :");
+				int nbb = i.nextInt();
+				System.out.print("Masukkan harga jual baru :");
+				int hjb = i.nextInt();
+				System.out.print("Masukkan harga beli beru :");
+				int hbb = i.nextInt();
+				
+				String sbb = (String)brg.elementAt(nbb-1).elementAt(0);
+				brg.setElementAt(addb(sbb,hjb,hbb),nbb-1);
+				
+				break;
+			case 7:
+				exit = 1;
+				break;
+			case 8:
+				System.out.print("Masukkan Nama Barang: ");
+				String cari = "a";
+				cari = i.next();
+				
+				//(String)brg.elementAt().elementAt(0);
+				int in=0;
+				int indeks = -1;
+				do
+					{
+					String con = (String)brg.elementAt(in).elementAt(0);
+					if(con.toLowerCase().contains(cari.toLowerCase()) == true)
+						{
+						System.out.println((String)brg.elementAt(in).elementAt(0) + " @" +(String)brg.elementAt(in).elementAt(1));
+						} 
+					in++;
+					}while((in<brg.size())&&(indeks == -1));
+				break;
+			}
+		}
+  }
+}
