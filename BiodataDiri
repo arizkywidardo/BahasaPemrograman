@@ -1,0 +1,22 @@
+ public class Manusia
+{
+
+static String nama = "Arizky Vebby Widardo";
+static String rambut = "Hitam";
+static int tinggi = 180;
+static int berat = 90;
+static int umur = 19;
+
+public static void biodata()
+{
+System.out.println("Nama Lengkap : "+nama);
+System.out.println("Warna Rambut : "+rambut);
+System.out.println("Tinggi Badan : "+tinggi);
+System.out.println("Berat Badan : "+berat);
+System.out.println("Umur : "+umur);
+}
+public static void main (String [] args){
+biodata();
+
+}
+}
