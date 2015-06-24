@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+class GenapGanjil {
+ public static void main(String[] args) {
+  System.out.println("Menentukan Genap atau Ganjil");
+  
+  int angka;
+  
+  Scanner scan = new Scanner(System.in);  
+  
+  System.out.print("Angka: ");
+  angka = scan.nextInt();
+  
+  if (angka%2==0) {
+   System.out.println("Angka = "+angka+" adalah Bilangan Genap");
+   }
+  else if (angka%2==1) {
+   System.out.println("Angka = "+angka+" adalah Bilangan Ganjil");
+   }
+ }
+}
