@@ -1,0 +1,58 @@
+import java.io.*; 
+import java.util.*; 
+class data
+{
+     public int angka[]=new int[100];     
+	 public int banyak=1; 
+} 
+	 class pengolahan extends data 
+	 {
+     public void insert_data()
+	 {
+	 Scanner in=new Scanner(System.in);
+	 System.out.print("Masukkan Data = ");
+	 angka[banyak]=in.nextInt();
+	 banyak++;
+     }
+     public void hapus_data()
+	 {
+	 if(banyak==1)
+	 {
+	 System.out.println("Data sudah kosong");
+	 }else
+	 {
+	 banyak-=1;
+	 System.out.println("Data terakhir Sudah dihapus!");
+	 }
+	 }
+     public void lihat_data()
+	 {
+	 for(int i=banyak-1;i>=1;i--)
+	 {
+	 System.out.println("|"+angka[i]+"|");
+	 }
+     }
+	 }
+	 class stack_java_thedewaku 
+	 {
+     public static void main(String[] args) 
+	 {
+	 pengolahan panggil=new pengolahan();
+	 Scanner input=new Scanner(System.in);
+	 String ul;
+	 do
+	 {
+	 System.out.print("Thedewaku:\n1. Masuk Data\n2. Hapus Data\n3. Lihat Data\n");
+	 System.out.print("Pilihan : ");
+	 int pil=input.nextInt();
+	 switch(pil)
+	 {
+	 case 1: panggil.insert_data(); break;
+	 case 2: panggil.hapus_data(); break;
+	 case 3: panggil.lihat_data(); break;
+	 }
+	 System.out.print("Ulangi (y/t) = ");
+	 ul=input.next();
+	 }while(ul.equals("y"));
+     }
+	 }
