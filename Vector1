@@ -1,0 +1,29 @@
+import java.util.* ;
+
+class Vector1 {
+
+public static void main ( String[] args) {
+
+//vector dengan inisialisasi kapasitasnya =5 
+Vector dataku = new Vector(5);
+
+dataku.addElement(10);
+dataku.addElement(11);
+dataku.addElement(12);
+dataku.addElement(13);
+dataku.addElement(14);
+
+dataku.addElement(101);
+
+dataku.remove(2); 
+
+System.out.println("capacity: "+ dataku.capacity() );
+System.out.println("size: "+ dataku.size() );
+
+for (int i=0; i < dataku.size(); i++){
+
+System.out.println("dataku elemen ke " + i + " : "+dataku.elementAt(i));
+}
+
+}
+}
